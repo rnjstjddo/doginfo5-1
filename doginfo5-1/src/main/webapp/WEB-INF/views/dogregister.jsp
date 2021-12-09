@@ -230,7 +230,8 @@ $(document).ready(function(){
 		<div class="col-lg-8">
 			<button type="submit" class="btn btn-warning">위 내용으로 분양 강아지를 등록합니다</button>
 			<button type="reset" class="btn btn-info">다시작성</button>
-			<button type="button" id="regBtn" class="btn btn-success">목록으로</button>
+			<!-- <button type="button" id="regBtn" class="btn btn-success">목록으로</button> -->
+			<button type="button" id="regBtn" class="btn btn-success" onclick="location.href='/doglist2'">목록으로</button>
 		</div>
 	</div>
 </div>

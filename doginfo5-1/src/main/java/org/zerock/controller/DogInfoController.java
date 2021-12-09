@@ -27,7 +27,7 @@ public class DogInfoController {
 	@GetMapping("/dogregister")
 	public void dogregisterget() {
 
-		log.info("GetMapping dogregister");
+		log.info("GetMapping dogregister 등록화면");
 
 	}
 //	
@@ -43,13 +43,13 @@ public class DogInfoController {
 		// remove는 GET방식으로 이동해서 remove.jsp로 화면을 새로 만들지 않기에 Model 객체가 필요없다.
 		// 대신 RedirectAttributes 객체의 addFlashAttributes 속성을 이용한다.
 		// service.get(dno);
-		log.info(dno);
-		log.info("PostMapping remove");
+		log.info("삭제 등록글번호"+dno);
+		log.info("PostMapping remove 등록글삭제 POST방식 -> 목록으로 redirect");	
 
 		// rttr.addFlashAttribute("{detail}",service.remove(dno));
 
 		if (service.remove(dno)) {
-			rttr.addFlashAttribute("remove", "success");
+			rttr.addFlashAttribute("remove", "처리가 완료되었습니다.");
 		}
 
 		return "redirect:/doglist2"; // void 리턴타입 지정시 없어도 무방. 같은 URL에서 POST ->GET 이동이므로.
@@ -60,7 +60,7 @@ public class DogInfoController {
 
 		// service.get(dno);
 		log.info(dno);
-		log.info("PostMapping dogdetail");
+		log.info("PostMapping dogdetail 세부사항GET ->Controller 통해서 세부사항GET이동");	
 
 		model.addAttribute("detail", service.get(dno));
 		// return "redirect:/dogdetail"; void 리턴타입 지정시 없어도 무방. 같은 URL에서 POST ->GET
@@ -85,7 +85,7 @@ public class DogInfoController {
 	// {
 	public String dogregisterpost(DogInfoDTO dogInfoDTO, @RequestParam ("uploadfileName") MultipartFile uploadfileName) throws IOException {	
 		log.info("PostMapping dogregister 분양등록 POST 방식 Controlle로 들어옴");	
-		String path = "/resources/upload";
+		String path = "C:\\upload\\";
 		
 		
 		
@@ -133,7 +133,7 @@ public class DogInfoController {
 	@GetMapping("/doglist2") // URI 입력시 분양리스트 화면만 보여준다.
 	public void doglistget(Model model) {
 
-		log.info("GetMapping doglist2");
+		log.info("GetMapping doglist2 목록화면GET");
 		log.info(service.getList());
 		model.addAttribute("registerdno", service.getList()); // 화면에는 register 이용해서 DB 내용가지고 온다.
 	}
